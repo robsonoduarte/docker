@@ -1,0 +1,8 @@
+http://monitoramento.ontracker.com.br:8080/trackerGWB/pages/login.jsf
+http://monitoramento.ontracker.com.br:8080/trackerGW/pages/login.jsf
+http://mobile.ontracker.com.br:8080/trackerGM/pages/trackerLogin.jsf
+http://easyloc.ontracker.com.br:8080/trackerGWB/pages/login.jsf
+http://conforce.ontracker.com.br:8080/trackerGWB/pages/login.jsf
+http://filaelb-1505176949.sa-east-1.elb.amazonaws.com:8080
+http://54.232.201.120:8080/TrackerService/PostInternoServlet
+http://54.94.177.94:8080/TrackerService/PostInternoServlet
