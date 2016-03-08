@@ -9,5 +9,8 @@ import java.util.concurrent.TimeUnit
 
 object EchoWeb extends App {
 
+   var ex = Executors newSingleThreadExecutor
+
+   ex submit(new Echo("http://httpstat.us"))
 
 }
