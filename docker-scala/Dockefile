@@ -4,3 +4,6 @@ MAINTAINER robsonoduarte
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get install openjdk-8-jdk
+RUN apt-get install git-core
+
+CMD git clone https://github.com/robsonoduarte/docker.git
