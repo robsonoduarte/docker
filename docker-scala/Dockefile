@@ -1,12 +1,13 @@
 FROM ubuntu:14.04
 MAINTAINER robsonoduarte
 
-RUN apt-get update && apt-get install -y python-software-properties software-properties-common
+
+RUN apt-get update
+RUN apt-get install -y python-software-properties software-properties-common
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk maven
+RUN apt-get install -y maven
 RUN apt-get install -y git-core
-
-CMD git clone https://github.com/robsonoduarte/docker.git
-CMD cd docker-scala
-CMD mvn clean install
+RUN git clone https://github.com/robsonoduarte/docker.git
+RUN cd /docker/docker-scala && mvn clean install
