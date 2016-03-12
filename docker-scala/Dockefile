@@ -12,6 +12,9 @@ RUN wget http://IP-NEXUS/nexus/content/repositories/releases/br/com/ontracker/on
 CMD ["java", "-jar", "ontracker-echo-web-0.0.3-jar-with-dependencies.jar"]
 
 
+
+
+# This lines is one example how we can build the apps in image
 #RUN apt-get install -y maven
 #RUN apt-get install -y git-core
 #RUN git clone https://github.com/robsonoduarte/docker.git
