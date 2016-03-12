@@ -6,7 +6,7 @@ RUN apt-get update
 RUN apt-get install -y python-software-properties software-properties-common
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
-RUN apt-get install -y openjdk-8-jdk maven
+RUN apt-get install -y openjdk-8-jdk
 RUN apt-get install -y maven
 RUN apt-get install -y git-core
 RUN git clone https://github.com/robsonoduarte/docker.git
