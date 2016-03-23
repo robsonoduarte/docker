@@ -10,8 +10,10 @@ RUN apt-get install -y wget
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jre
-RUN wget http://IP-NEXUS/nexus/content/repositories/releases/br/com/ontracker/ontracker-echo-web/0.0.3/ontracker-echo-web-0.0.3-jar-with-dependencies.jar
-CMD ["java", "-jar", "ontracker-echo-web-0.0.3-jar-with-dependencies.jar"]
+RUN wget http://NEXUS-IP:8081/nexus/content/repositories/releases/br/com/ontracker/ontracker-echo-web/0.0.3/ontracker-echo-web-0.0.3-jar-with-dependencies.jar
+EXPOSE 1098
+CMD ["java", "-jar", "-Dcom.sun.management.jmxremote",  "-Dcom.sun.management.jmxremote.port=1098", "-Dcom.sun.management.jmxremote.ssl=false", "-Dcom.sun.management.jmxremote.authenticate=false", "-Djava.rmi.server.hostname=192.168.99.100", "ontracker-echo-web-0.0.3-jar-with-dependencies.jar"]
+
 
 
 
