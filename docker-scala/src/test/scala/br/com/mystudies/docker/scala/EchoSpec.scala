@@ -12,7 +12,6 @@ import org.scalatest.Matchers
 class EchoSpec extends FlatSpec with Matchers{
 
 
-
    "A Echo" should "is a Runnable and connect using the http protocol" in {
 	   val echo = Echo("http://httpstat.us")
 	   echo shouldBe a [Runnable]
@@ -20,18 +19,10 @@ class EchoSpec extends FlatSpec with Matchers{
    }
 
 
-   it should "communicator when any exeption occur to connection of echo" in {
+   it should "only log when any exeption occur to connection of echo" in {
      val echo = Echo("http://localhost:5000")
      echo run
     }
-
-
-
-   it should "communicator when status code is diferent of 200 in echo " in {
-			val echo = Echo("http://httpstat.us/500")
-			echo run
-   }
-
 
 }
 
