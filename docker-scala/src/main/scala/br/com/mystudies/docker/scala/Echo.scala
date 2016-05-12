@@ -9,17 +9,13 @@ import scalaj.http.Http
 case class Echo(val host: String) extends Runnable{
 
 
-  var logger = Logger(LoggerFactory.getLogger("Echo"))
+  val logger = Logger(LoggerFactory.getLogger("Echo"))
 
 
   def run = {
-
      try {
-
-    	 val response = Http(host) asString
-
+    	 val response = Http(host).asString
     	 log
-
      } catch {
        case t: Throwable => logger error(s"ECHO IN WEB APP $host IS FAILURE -> ", t)
      }
@@ -27,18 +23,7 @@ case class Echo(val host: String) extends Runnable{
 
 
 
-
-
-  private def log() = {
-    logger info(s"Echo successful in the $host")
-  }
-
-
-
-
-  override def toString() = {
-      s"Echo in $host"
-  }
+  private def log = logger info(s"Echo successful in the $host")
 
 
 }
