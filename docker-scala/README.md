@@ -8,15 +8,15 @@ Docker - Scala
 
 
 ```
-1. **Create jar**
+1. Create jar
 
 	mvn clean install
 
-2. **Create Docker Image**
+2. Create Docker Image
 
 	docker build -t docker-scala .
 
-3. **Run Docker Image**
+3. Run Docker Image
 
 	docker run --name docker-scala docker-scala
 
