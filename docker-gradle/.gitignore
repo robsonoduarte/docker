@@ -4,3 +4,5 @@
 /gradle/wrapper
 /.classpath
 /.project
+/.cache-main
+/.cache-tests
