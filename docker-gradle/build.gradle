@@ -6,14 +6,32 @@ apply plugin: 'docker'
 
 
 
-repositories {
-    jcenter()
+buildscript {
+    repositories { mavenLocal(); jcenter() }
+    dependencies {
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
 }
 
 
-
+repositories {
+    jcenter()
+}
 
 dependencies {
 	compile 'org.scala-lang:scala-library:2.11.8'
 	testCompile 'junit:junit:4.12'
 }
+
+
+docker {
+    baseImage 'java:jre-alpine'
+}
+
+
+task temp(type: Docker) {
+	jar.execute()
+	addFile('/build/libs/docker-gradle.jar', '/docker-gradle.jar')
+}
+
+
