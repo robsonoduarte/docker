@@ -29,9 +29,14 @@ docker {
 }
 
 
-task temp(type: Docker) {
+task dockerImage(type: Docker) {
+
+	clean.execute()
 	jar.execute()
-	addFile('/build/libs/docker-gradle.jar', '/docker-gradle.jar')
+
+
+	addFile(jar.archivePath, '/' + jar.archiveName)
+
 }
 
 
