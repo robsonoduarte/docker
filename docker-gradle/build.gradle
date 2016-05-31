@@ -24,6 +24,8 @@ dependencies {
 }
 
 
+
+
 docker {
     baseImage 'java:jre-alpine'
 }
@@ -36,6 +38,7 @@ task dockerImage(type: Docker) {
 
 
 	addFile jar.archivePath, '/' + jar.archiveName
+	defaultCommand = ['java', '-jar' , jar.archiveName ]
 
 }
 
