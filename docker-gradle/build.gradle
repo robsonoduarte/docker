@@ -35,14 +35,31 @@ jar {
 
 
 docker {
-    baseImage 'java:jre-alpine'
+    baseImage 'java:8-jre'
+
 }
 
 
-task dockerImage(type: Docker, dependsOn: ['clean', 'jar']) {
+
+task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
 
 	addFile jar.archivePath, '/' + jar.archiveName
-	defaultCommand = ['java', '-jar' , jar.archiveName ]
+	addFile 'build/start.sh', '/start.sh'
+	defaultCommand = ['start.sh']
 }
 
+
+
+
+task startFile(){
+    copy{
+	   from ('src/main/resources'){
+			include '**/*.sh'
+			filter{
+        		String line -> line.replaceAll('#archiveName', jar.archiveName)
+    		}
+		}
+	   into 'build/'
+	}
+}
 
