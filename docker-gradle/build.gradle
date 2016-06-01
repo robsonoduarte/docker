@@ -5,6 +5,11 @@ apply plugin: 'docker'
 
 
 
+sourceSets.main.scala.srcDir "src/main/java"
+sourceSets.test.scala.srcDir "src/test/java"
+sourceSets.main.java.srcDirs = []
+sourceSets.test.java.srcDirs = []
+
 
 buildscript {
     repositories { mavenLocal(); jcenter() }
@@ -35,8 +40,7 @@ jar {
 
 
 docker {
-    baseImage 'java:8-jre-alpine'
-
+    baseImage 'java:8-jre'
 }
 
 
@@ -45,7 +49,8 @@ task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
 
 	addFile jar.archivePath, '/' + jar.archiveName
 	addFile 'build/start.sh', '/start.sh'
-	defaultCommand = ['start.sh']
+	runCommand 'chmod +x /start.sh'
+	defaultCommand = ['java', '-jar' , jar.archiveName]
 }
 
 
