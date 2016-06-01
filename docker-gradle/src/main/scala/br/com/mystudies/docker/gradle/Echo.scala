@@ -1,5 +1,11 @@
 package br.com.mystudies.docker.gradle
 
-object Echo extends App{
-  print("Echo")
+class Echo {
+
+ def temp = while(true){
+    println("Echo")
+    Thread.sleep(1000)
+  }
+
+
 }
