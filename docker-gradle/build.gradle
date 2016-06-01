@@ -1,5 +1,5 @@
-apply plugin: 'scala'
 apply plugin: 'java'
+apply plugin: 'scala'
 apply plugin: 'eclipse'
 apply plugin: 'docker'
 
@@ -23,7 +23,15 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'br.com.mystudies.docker.gradle.Echo'
+    }
 
+     from {
+    	configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  	}
+}
 
 
 docker {
@@ -31,15 +39,10 @@ docker {
 }
 
 
-task dockerImage(type: Docker) {
-
-	clean.execute()
-	jar.execute()
-
+task dockerImage(type: Docker, dependsOn: ['clean', 'jar']) {
 
 	addFile jar.archivePath, '/' + jar.archiveName
 	defaultCommand = ['java', '-jar' , jar.archiveName ]
-
 }
 
 
