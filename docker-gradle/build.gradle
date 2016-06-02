@@ -40,13 +40,15 @@ jar {
 
 
 docker {
-    baseImage 'java:8-jre'
+    baseImage 'java:8-jre-alpine'
 }
 
 
 
 task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
 
+
+	runCommand 'apk add --update bash && rm -rf /var/cache/apk/*'
 	addFile jar.archivePath, '/' + jar.archiveName
 	addFile 'build/start.sh', '/start.sh'
 	runCommand 'chmod +x /start.sh'
