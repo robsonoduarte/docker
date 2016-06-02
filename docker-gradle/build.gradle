@@ -46,8 +46,6 @@ docker {
 
 
 task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
-
-
 	runCommand 'apk add --update bash && rm -rf /var/cache/apk/*'
 	addFile jar.archivePath, '/' + jar.archiveName
 	addFile 'build/start.sh', '/start.sh'
@@ -57,16 +55,11 @@ task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
 
 
 
-
-task startFile(){
-    copy{
-	   from ('src/main/resources'){
-			include '**/*.sh'
-			filter{
-        		String line -> line.replaceAll('#archiveName', jar.archiveName)
-    		}
-		}
-	   into 'build/'
-	}
+import org.apache.tools.ant.filters.*
+task startFile(type: Copy){
+   from 'src/main/resources'
+   into buildDir
+   include '**/*.sh'
+   filter(ReplaceTokens, tokens: [archiveName: jar.archiveName, environment: System.properties['environment']])
 }
 
