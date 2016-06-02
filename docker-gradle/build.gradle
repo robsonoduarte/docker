@@ -52,7 +52,7 @@ task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
 	addFile jar.archivePath, '/' + jar.archiveName
 	addFile 'build/start.sh', '/start.sh'
 	runCommand 'chmod +x /start.sh'
-	defaultCommand = ['/start.sh', ]
+	defaultCommand = ['/start.sh' ]
 }
 
 
