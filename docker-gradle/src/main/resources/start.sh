@@ -5,7 +5,7 @@ JAVA_OPTS="
 -server \
 -Xms56m \
 -Xmx56m \
--Denvironment=ho \
+-Denvironment=environment \
 -Dcom.sun.management.jmxremote \
 -Dcom.sun.management.jmxremote.port=1098 \
 -Dcom.sun.management.jmxremote.rmi.port=1098 \
@@ -14,4 +14,4 @@ JAVA_OPTS="
 -Djava.rmi.server.hostname=52.200.219.47"
 
 
-java -jar $JAVA_OPTS #archiveName
+java -jar $JAVA_OPTS archiveName
