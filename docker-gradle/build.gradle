@@ -4,7 +4,7 @@ apply plugin: 'eclipse'
 apply plugin: 'docker'
 
 
-
+// see -> http://stackoverflow.com/questions/26916081/how-to-build-a-mixed-java-scala-project
 sourceSets.main.scala.srcDir "src/main/java"
 sourceSets.test.scala.srcDir "src/test/java"
 sourceSets.main.java.srcDirs = []
@@ -28,6 +28,9 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 }
 
+
+
+// see -> http://www.mkyong.com/gradle/gradle-create-a-jar-file-with-dependencies/
 jar {
     manifest {
         attributes 'Main-Class': 'br.com.mystudies.docker.gradle.Echo'
@@ -39,9 +42,16 @@ jar {
 
 
 
-// DOCKER
+/*
+   DOCKER
+
+   For more information about Gradle Docker plguin see:
+
+   https://github.com/Transmode/gradle-docker
+*/
 
 docker {
+   // the official image to java -> https://hub.docker.com/_/java/
    baseImage 'java:8-jre-alpine'
 }
 
@@ -56,15 +66,11 @@ task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
 
 
 
-
-
-/*
-
-*/
 Map<String, String> hostnames = [lo: 'localhost', de: '192.168.99.100']
 
-import org.apache.tools.ant.filters.*
 
+// see -> http://mrhaki.blogspot.com.br/2010/10/gradle-goodness-copy-files-with.html
+import org.apache.tools.ant.filters.*
 task startFile(type: Copy){
    from 'src/main/resources'
    into buildDir
