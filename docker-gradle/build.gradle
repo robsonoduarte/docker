@@ -32,17 +32,18 @@ jar {
     manifest {
         attributes 'Main-Class': 'br.com.mystudies.docker.gradle.Echo'
     }
-
      from {
     	configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
   	}
 }
 
 
-docker {
-    baseImage 'java:8-jre-alpine'
-}
 
+// DOCKER
+
+docker {
+   baseImage 'java:8-jre-alpine'
+}
 
 
 task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
@@ -55,11 +56,24 @@ task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
 
 
 
+
+
+/*
+
+*/
+Map<String, String> hostnames = [lo: 'localhost', de: '192.168.99.100']
+
 import org.apache.tools.ant.filters.*
+
 task startFile(type: Copy){
    from 'src/main/resources'
    into buildDir
    include '**/*.sh'
-   filter(ReplaceTokens, tokens: [archiveName: jar.archiveName, environment: System.properties['environment']])
+   filter(ReplaceTokens, tokens:[
+	   		archiveName: jar.archiveName,
+	   		environment: System.properties['environment'],
+	   		hostname: hostnames[System.properties['environment']]
+   		]
+   	)
 }
 
