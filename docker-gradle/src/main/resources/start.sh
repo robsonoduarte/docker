@@ -11,7 +11,7 @@ JAVA_OPTS="
 -Dcom.sun.management.jmxremote.rmi.port=1098 \
 -Dcom.sun.management.jmxremote.authenticate=false \
 -Dcom.sun.management.jmxremote.ssl=false \
--Djava.rmi.server.hostname=52.200.219.47"
+-Djava.rmi.server.hostname=@hostname@"
 
 
 java -jar $JAVA_OPTS @archiveName@
