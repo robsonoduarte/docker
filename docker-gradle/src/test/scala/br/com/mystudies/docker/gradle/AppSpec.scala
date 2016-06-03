@@ -1,3 +1,5 @@
+package br.com.mystudies.docker.gradle
+
 import org.junit.runner.RunWith
 import org.scalatest.FlatSpec
 import org.scalatest.junit.JUnitRunner
