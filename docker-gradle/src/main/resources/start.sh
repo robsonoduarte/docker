@@ -15,6 +15,3 @@ JAVA_OPTS="
 
 
 java -jar $JAVA_OPTS @archiveName@
-
-
-
