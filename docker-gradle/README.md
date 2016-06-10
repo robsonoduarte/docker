@@ -6,9 +6,15 @@ Docker - Gradle ( In Construction )
  - [Install Gradle](https://docs.gradle.org/current/userguide/installation.html)
 
 
+Build Image
+Run Image
+
+After vocation ....
 
 **Extras**
 
 - VisualVM
 
-- Alpine Linux
+- Alpine Linux + Bash
+
+
