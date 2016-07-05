@@ -6,7 +6,11 @@ Docker - Gradle ( In Construction )
  - [Install Gradle](https://docs.gradle.org/current/userguide/installation.html)
 
 
+
 Build Image
+
+	** puts the task
+
 Run Image
 
 After vocation ....
