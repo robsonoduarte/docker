@@ -5,11 +5,13 @@ Docker - Gradle ( In Construction )
 
  - [Install Gradle](https://docs.gradle.org/current/userguide/installation.html)
 
+ - [Gradle Docker Plguin](https://github.com/Transmode/gradle-docker)
 
 
 Build Image
 
 	** puts the task
+
 
 Run Image
 
