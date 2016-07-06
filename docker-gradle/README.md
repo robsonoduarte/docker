@@ -10,14 +10,15 @@ Docker - Gradle ( In Construction )
  - [Docker Hub Java](https://hub.docker.com/_/java/)
 
 
-Build Image:
+**Build Image:**
 ```
 gradle dockerImage -Denvironment=lo
 ```
 
-
-Run Image
-
+**Run Image:**
+```
+docker run --name docker-gradle docker-gradle:0.1.0
+```
 
 
 **Extras**
