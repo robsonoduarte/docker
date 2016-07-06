@@ -10,14 +10,15 @@ Docker - Gradle ( In Construction )
  - [Docker Hub Java](https://hub.docker.com/_/java/)
 
 
-Build Image
-
-	** puts the task
+Build Image:
+```
+gradle dockerImage -Denvironment=lo
+```
 
 
 Run Image
 
-After vocation ....
+
 
 **Extras**
 
