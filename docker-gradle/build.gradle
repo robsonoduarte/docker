@@ -5,11 +5,16 @@ apply plugin: 'docker'
 apply plugin:'application'
 
 
+mainClassName = "br.com.mystudies.docker.gradle.EchoLibrary"
+
+
 // see -> http://stackoverflow.com/questions/26916081/how-to-build-a-mixed-java-scala-project
 sourceSets.main.scala.srcDir "src/main/java"
 sourceSets.test.scala.srcDir "src/test/java"
 sourceSets.main.java.srcDirs = []
 sourceSets.test.java.srcDirs = []
+
+
 
 
 buildscript {
