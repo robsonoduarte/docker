@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'scala'
 apply plugin: 'eclipse'
 apply plugin: 'docker'
+apply plugin:'application'
 
 
 // see -> http://stackoverflow.com/questions/26916081/how-to-build-a-mixed-java-scala-project
@@ -18,10 +19,10 @@ buildscript {
     }
 }
 
-
 repositories {
     jcenter()
 }
+
 
 dependencies {
 	compile 'org.scala-lang:scala-library:2.11.8'
@@ -31,23 +32,10 @@ dependencies {
 
 
 
-// see -> http://www.mkyong.com/gradle/gradle-create-a-jar-file-with-dependencies/
-jar {
-    manifest {
-        attributes 'Main-Class': 'br.com.mystudies.docker.gradle.Echo'
-    }
-     from {
-    	configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-  	}
-}
-
-
 
 /*
    DOCKER
-
    For more information about Gradle Docker plguin see:
-
    https://github.com/Transmode/gradle-docker
 */
 
@@ -57,30 +45,19 @@ docker {
 }
 
 
-task dockerImage(type: Docker, dependsOn: ['jar', 'startFile']) {
-	runCommand 'apk add --update bash && rm -rf /var/cache/apk/*'
-	addFile jar.archivePath, '/' + jar.archiveName
-	addFile 'build/start.sh', '/start.sh'
-	runCommand 'chmod +x /start.sh'
-	defaultCommand = ['/start.sh' ]
-}
 
 
+applicationDefaultJvmArgs = [
+	"-server",
+	"-Xms56m",
+	"-Xmx56m",
+	"-Denvironment=ho",
+	"-Dcom.sun.management.jmxremote",
+	"-Dcom.sun.management.jmxremote.port=1098",
+	"-Dcom.sun.management.jmxremote.rmi.port=1098",
+	"-Dcom.sun.management.jmxremote.authenticate=false",
+	"-Dcom.sun.management.jmxremote.ssl=false",
+	"-Djava.rmi.server.hostname=192.168.0.1"
+]
 
-Map<String, String> hostnames = [lo: 'localhost', de: '192.168.99.100']
-
-
-// see -> http://mrhaki.blogspot.com.br/2010/10/gradle-goodness-copy-files-with.html
-import org.apache.tools.ant.filters.*
-task startFile(type: Copy){
-   from 'src/main/resources'
-   into buildDir
-   include '**/*.sh'
-   filter(ReplaceTokens, tokens:[
-	   		archiveName: jar.archiveName,
-	   		environment: System.properties['environment'],
-	   		hostname: hostnames[System.properties['environment']]
-   		]
-   	)
-}
 
