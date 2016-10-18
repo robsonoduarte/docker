@@ -1,7 +1,10 @@
+/bin/
 /target/
-/.settings/
+/project/target/
+/project/project/
 /.cache-main
 /.cache-tests
 /.classpath
 /.project
+/.settings/
 /ontracker-echo-web.log
