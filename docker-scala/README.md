@@ -1,5 +1,6 @@
 Docker - Scala
 ======================
+( README IN CONSTRUTION ) / IMMIGRATION TO SBT.
 
 * Simple example how create one Scala App and run It in Docker
 
